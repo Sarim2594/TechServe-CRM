@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .entity { fill: #fff; stroke: #2563eb; stroke-width: 3; rx: 14; }
+      .head { fill: #dbeafe; stroke: #2563eb; stroke-width: 3; rx: 14; }
+      .name { font: 700 23px Arial, sans-serif; fill: #0f172a; }
+      .field { font: 17px Arial, sans-serif; fill: #334155; }
+      .rel { font: 700 18px Arial, sans-serif; fill: #475569; }
+      .line { stroke: #475569; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="1080" fill="#f8fafc"/>
+  <text x="800" y="55" text-anchor="middle" class="title">TechServe CRM Entity Relationship Diagram</text>
+
+  <g transform="translate(80,130)">
+    <rect width="330" height="280" class="entity"/><rect width="330" height="58" class="head"/>
+    <text x="165" y="38" text-anchor="middle" class="name">users</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">name, email</text>
+    <text x="20" y="152" class="field">password_hash</text><text x="20" y="182" class="field">role: manager | agent</text>
+    <text x="20" y="212" class="field">is_active</text><text x="20" y="242" class="field">created_at</text>
+  </g>
+
+  <g transform="translate(620,100)">
+    <rect width="360" height="310" class="entity"/><rect width="360" height="58" class="head"/>
+    <text x="180" y="38" text-anchor="middle" class="name">customers</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">full_name, email</text>
+    <text x="20" y="152" class="field">phone, company</text><text x="20" y="182" class="field">notes</text>
+    <text x="20" y="212" class="field">FK assigned_agent_id -&gt; users.id</text>
+    <text x="20" y="242" class="field">created_at</text>
+  </g>
+
+  <g transform="translate(1130,100)">
+    <rect width="390" height="410" class="entity"/><rect width="390" height="58" class="head"/>
+    <text x="195" y="38" text-anchor="middle" class="name">tickets</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">title, description</text>
+    <text x="20" y="152" class="field">status, priority, category</text>
+    <text x="20" y="182" class="field">FK customer_id -&gt; customers.id</text>
+    <text x="20" y="212" class="field">FK assigned_agent_id -&gt; users.id</text>
+    <text x="20" y="242" class="field">ai_category, ai_sentiment</text>
+    <text x="20" y="272" class="field">ai_summary</text><text x="20" y="302" class="field">created_at, updated_at</text>
+    <text x="20" y="332" class="field">resolved_at</text>
+  </g>
+
+  <g transform="translate(80,700)">
+    <rect width="390" height="245" class="entity"/><rect width="390" height="58" class="head"/>
+    <text x="195" y="38" text-anchor="middle" class="name">ticket_comments</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">FK ticket_id -&gt; tickets.id</text>
+    <text x="20" y="152" class="field">FK agent_id -&gt; users.id</text>
+    <text x="20" y="182" class="field">message, is_internal, created_at</text>
+  </g>
+
+  <g transform="translate(610,700)">
+    <rect width="390" height="245" class="entity"/><rect width="390" height="58" class="head"/>
+    <text x="195" y="38" text-anchor="middle" class="name">ticket_activities</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">FK ticket_id -&gt; tickets.id</text>
+    <text x="20" y="152" class="field">FK actor_id -&gt; users.id</text>
+    <text x="20" y="182" class="field">action, old_value, new_value</text>
+    <text x="20" y="212" class="field">created_at</text>
+  </g>
+
+  <g transform="translate(1130,700)">
+    <rect width="390" height="245" class="entity"/><rect width="390" height="58" class="head"/>
+    <text x="195" y="38" text-anchor="middle" class="name">notification_logs</text>
+    <text x="20" y="92" class="field">PK id</text><text x="20" y="122" class="field">FK ticket_id -&gt; tickets.id</text>
+    <text x="20" y="152" class="field">platform, message, status</text>
+    <text x="20" y="182" class="field">sent_at</text>
+  </g>
+
+  <line x1="410" y1="240" x2="610" y2="240" class="line"/><text x="490" y="220" class="rel">1 : many</text>
+  <line x1="980" y1="240" x2="1120" y2="240" class="line"/><text x="1015" y="220" class="rel">1 : many</text>
+  <line x1="1260" y1="510" x2="360" y2="690" class="line"/><text x="700" y="580" class="rel">ticket 1 : many comments</text>
+  <line x1="1320" y1="510" x2="820" y2="690" class="line"/><text x="920" y="620" class="rel">ticket 1 : many activities</text>
+  <line x1="1390" y1="510" x2="1390" y2="690" class="line"/><text x="1405" y="610" class="rel">1 : many logs</text>
+</svg>
