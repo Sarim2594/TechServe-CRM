@@ -1,8 +1,20 @@
 # AI-Enhanced CRM & Ticket Management System
 
-This project is a CRM and support-ticket management MVP for TechServe Solutions. Managers and
-support agents can manage customers, track service requests, review activity history, use AI-assisted
-ticket tools, and record or send SMTP email notifications.
+This project is a CRM and support-ticket management MVP for TechServe Solutions. It allows managers
+and support agents to manage customers, track service requests, review activity history, use
+AI-assisted ticket tools, and send or record SMTP email notifications.
+
+## Team
+
+Group 4 — BCS-6J  
+FAST NUCES  
+Course: Artificial Intelligence (AI-2002)
+
+| Name                       | Student ID |
+| -------------------------- | ---------- |
+| Muhammad Sarim Khan Ghouri | 23k-0720   |
+| Syeda Hamna Uraizee        | 22k-5112   |
+| Sohaib Ahmer               | 22k-4784   |
 
 ## Features
 
@@ -86,26 +98,26 @@ docker compose up --build
 
 Backend values belong in `backend/.env`. The committed `backend/.env.example` contains placeholders.
 
-| Variable                        | Purpose                                                           |
-| ------------------------------- | ----------------------------------------------------------------- |
-| `DATABASE_URL`                | SQLAlchemy database URL; defaults to local SQLite                 |
+| Variable                      | Purpose                                                           |
+| ----------------------------- | ----------------------------------------------------------------- |
+| `DATABASE_URL`                | SQLAlchemy database URL; defaults to local SQLite                  |
 | `SECRET_KEY`                  | Required secret used to sign JWT access tokens                    |
-| `ALGORITHM`                   | JWT signing algorithm; defaults to `HS256`                      |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT token lifetime; defaults to `60`                            |
-| `AI_PROVIDER`                 | AI adapter:`rule_based`, `openai`, or `gemini`              |
+| `ALGORITHM`                   | JWT signing algorithm; defaults to `HS256`                        |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT token lifetime; defaults to `60`                              |
+| `AI_PROVIDER`                 | AI adapter: `rule_based`, `openai`, or `gemini`                   |
 | `AI_API_KEY`                  | Optional hosted AI provider API key                               |
 | `OPENAI_MODEL`                | OpenAI model identifier                                           |
 | `GEMINI_MODEL`                | Gemini model identifier                                           |
-| `ENABLE_MESSAGING`            | Set to `true` to send email; defaults to safe logging-only mode |
-| `MESSAGING_PLATFORM`          | Messaging adapter; set to `smtp`                                |
+| `ENABLE_MESSAGING`            | Set to `true` to send email; defaults to safe logging-only mode   |
+| `MESSAGING_PLATFORM`          | Messaging adapter; set to `smtp`                                  |
 | `SMTP_HOST`                   | SMTP server hostname                                              |
-| `SMTP_PORT`                   | SMTP server port; defaults to `587`                             |
+| `SMTP_PORT`                   | SMTP server port; defaults to `587`                               |
 | `SMTP_USERNAME`               | SMTP account username                                             |
 | `SMTP_PASSWORD`               | SMTP password or provider app password                            |
 | `SMTP_FROM_EMAIL`             | Sender email address                                              |
 | `SMTP_TO_EMAIL`               | Recipient email address for ticket alerts                         |
-| `SMTP_USE_TLS`                | Enables STARTTLS before login; defaults to `true`               |
-| `VITE_API_URL`                | Frontend API base URL, configured in `frontend/.env`            |
+| `SMTP_USE_TLS`                | Enables STARTTLS before login; defaults to `true`                 |
+| `VITE_API_URL`                | Frontend API base URL, configured in `frontend/.env`              |
 
 Never commit `.env` files, real API keys, SMTP passwords, or production database files.
 
@@ -149,6 +161,10 @@ For Gmail, use `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`, `SMTP_USE_TLS=true`,
 Password instead of the normal account password. With `ENABLE_MESSAGING=false`, workflows remain
 safe and notification attempts are recorded with a `logged` status.
 
+For final demo evidence, configure real SMTP credentials in `backend/.env`, trigger a ticket
+notification, and capture the received email screenshot. Do not commit real SMTP passwords or `.env`
+files.
+
 ## Project Structure
 
 ```text
@@ -173,31 +189,70 @@ frontend/
 
 ### Login
 
-[Insert screenshot of login here]
+![Login](docs/screenshots/01_login_page.png)
 
-### Dashboard
+### Manager Dashboard
 
-[Insert screenshot of dashboard here]
+![Manager Dashboard](docs/screenshots/02_manager_dashboard.png)
 
 ### Customers
 
-[Insert screenshot of customer list and customer detail here]
+![Customers](docs/screenshots/03_customers_list.png)
+
+### Customer Detail
+
+![Customer Detail](docs/screenshots/04_customer_detail.png)
 
 ### Tickets
 
-[Insert screenshot of ticket list and ticket detail here]
+![Tickets](docs/screenshots/05_tickets_list.png)
 
-### Ticket AI Section
+### Ticket Detail
 
-[Insert screenshot of AI category, sentiment, suggested reply, and summary here]
+![Ticket Detail](docs/screenshots/06_ticket_detail.png)
+
+### AI Insights
+
+![AI Insights](docs/screenshots/07_ai_insights.png)
+
+### AI Reply Suggestion
+
+![AI Reply Suggestion](docs/screenshots/08_ai_reply_suggestion.png)
+
+### Activity Log
+
+![Activity Log](docs/screenshots/09_activity_log.png)
+
+### Notification History
+
+![Notification History](docs/screenshots/10_notification_history.png)
 
 ### Reports
 
-[Insert screenshot of manager reports here]
+![Reports](docs/screenshots/11_reports_page.png)
+
+### Agent Dashboard
+
+![Agent Dashboard](docs/screenshots/12_agent_dashboard.png)
+
+### Agent Restricted Reports
+
+![Agent Restricted Reports](docs/screenshots/13_agent_restricted_reports.png)
 
 ### Email Notification
 
-[Insert screenshot of received SMTP email here]
+![Email Notification](docs/screenshots/14_email_notification.png)
+
+For a public GitHub repository, personal email addresses in screenshots should be cropped or blurred
+before publishing.
+
+## Submission Deliverables
+
+- GitHub repository URL
+- Project report PDF
+- 3-5 minute demo video
+- Screenshots of AI features and SMTP email notification
+- Source code with README and setup instructions
 
 ## Known Limitations
 
