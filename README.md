@@ -6,8 +6,9 @@ AI-assisted ticket tools, and send or record SMTP email notifications.
 
 ## Team
 
-Group 4 — BCS-6J  
-FAST NUCES  
+Group 4
+BCS-6J
+FAST NUCES
 Course: Artificial Intelligence (AI-2002)
 
 | Name                       | Student ID |
@@ -64,6 +65,8 @@ Course: Artificial Intelligence (AI-2002)
 
 ```powershell
 cd backend
+Copy-Item .env.example .env
+# Edit .env and replace the SECRET_KEY placeholder before starting the API.
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
@@ -96,28 +99,37 @@ docker compose up --build
 
 ## Environment Variables
 
-Backend values belong in `backend/.env`. The committed `backend/.env.example` contains placeholders.
+Backend values belong in `backend/.env`. Create the local file from the committed placeholder
+template, then edit the copied file for your environment:
 
-| Variable                      | Purpose                                                           |
-| ----------------------------- | ----------------------------------------------------------------- |
-| `DATABASE_URL`                | SQLAlchemy database URL; defaults to local SQLite                  |
+```powershell
+cd backend
+Copy-Item .env.example .env
+```
+
+At minimum, replace the `SECRET_KEY` placeholder with a long random value before starting the API.
+Keep real secrets only in `backend/.env`; never add them to `.env.example`.
+
+| Variable                        | Purpose                                                           |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `DATABASE_URL`                | SQLAlchemy database URL; defaults to local SQLite                 |
 | `SECRET_KEY`                  | Required secret used to sign JWT access tokens                    |
-| `ALGORITHM`                   | JWT signing algorithm; defaults to `HS256`                        |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT token lifetime; defaults to `60`                              |
-| `AI_PROVIDER`                 | AI adapter: `rule_based`, `openai`, or `gemini`                   |
+| `ALGORITHM`                   | JWT signing algorithm; defaults to `HS256`                      |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT token lifetime; defaults to `60`                            |
+| `AI_PROVIDER`                 | AI adapter:`rule_based`, `openai`, or `gemini`              |
 | `AI_API_KEY`                  | Optional hosted AI provider API key                               |
 | `OPENAI_MODEL`                | OpenAI model identifier                                           |
 | `GEMINI_MODEL`                | Gemini model identifier                                           |
-| `ENABLE_MESSAGING`            | Set to `true` to send email; defaults to safe logging-only mode   |
-| `MESSAGING_PLATFORM`          | Messaging adapter; set to `smtp`                                  |
+| `ENABLE_MESSAGING`            | Set to `true` to send email; defaults to safe logging-only mode |
+| `MESSAGING_PLATFORM`          | Messaging adapter; set to `smtp`                                |
 | `SMTP_HOST`                   | SMTP server hostname                                              |
-| `SMTP_PORT`                   | SMTP server port; defaults to `587`                               |
+| `SMTP_PORT`                   | SMTP server port; defaults to `587`                             |
 | `SMTP_USERNAME`               | SMTP account username                                             |
 | `SMTP_PASSWORD`               | SMTP password or provider app password                            |
 | `SMTP_FROM_EMAIL`             | Sender email address                                              |
 | `SMTP_TO_EMAIL`               | Recipient email address for ticket alerts                         |
-| `SMTP_USE_TLS`                | Enables STARTTLS before login; defaults to `true`                 |
-| `VITE_API_URL`                | Frontend API base URL, configured in `frontend/.env`              |
+| `SMTP_USE_TLS`                | Enables STARTTLS before login; defaults to `true`               |
+| `VITE_API_URL`                | Frontend API base URL, configured in `frontend/.env`            |
 
 Never commit `.env` files, real API keys, SMTP passwords, or production database files.
 
