@@ -7,7 +7,10 @@ from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./crm.db")
+# Vercel injects POSTGRES_URL_NON_POOLING or POSTGRES_URL for standard connections.
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL or DATABASE_URL.startswith("prisma://"):
+    DATABASE_URL = os.getenv("POSTGRES_URL_NON_POOLING") or os.getenv("POSTGRES_URL") or DATABASE_URL or "sqlite:///./crm.db"
 if DATABASE_URL and DATABASE_URL.startswith("postgres"):
     # Vercel provides postgres:// or postgresql://, SQLAlchemy needs postgresql+pg8000://
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+pg8000://", 1)
