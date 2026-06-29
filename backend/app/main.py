@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -23,11 +24,12 @@ app = FastAPI(
     description="CRM and ticket management MVP for TechServe Solutions.",
     version="0.1.0",
     lifespan=lifespan,
+    root_path="/api" if os.getenv("VERCEL") else "",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

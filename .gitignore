@@ -22,3 +22,8 @@ coverage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Docs
+AI Project Report.pdf
+Demo.mp4
+docs/
