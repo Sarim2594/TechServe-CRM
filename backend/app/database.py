@@ -12,6 +12,8 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres"):
     # Vercel provides postgres:// or postgresql://, SQLAlchemy needs postgresql+pg8000://
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+pg8000://", 1)
     DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+pg8000://", 1)
+    if "?" in DATABASE_URL:
+        DATABASE_URL = DATABASE_URL.split("?")[0]
 
 connect_args = {}
 if DATABASE_URL and DATABASE_URL.startswith("sqlite"):
