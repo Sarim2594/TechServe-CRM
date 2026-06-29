@@ -46,3 +46,13 @@ app.include_router(reports.router)
 @app.get("/")
 def health_check() -> dict[str, str]:
     return {"message": "TechServe AI CRM API is running"}
+
+@app.get("/setup")
+def setup_database() -> dict[str, str]:
+    """Manually trigger database setup for Serverless environments (which skip lifespan)."""
+    Base.metadata.create_all(bind=engine)
+    with SessionLocal() as db:
+        seed_default_users(db)
+        seed_sample_customers(db)
+        seed_sample_tickets(db)
+    return {"message": "Database tables created and default data seeded successfully!"}
